@@ -1,0 +1,931 @@
+ <h1 class="documentFirstHeading"> 
+            
+        <span class="" id="parent-fieldname-title">
+            User Guide
+        </span>
+    
+        </h1>
+
+        
+
+
+
+
+        <p class="documentDescription">
+            
+        <span class="" id="parent-fieldname-description">
+            
+        </span>
+    
+        </p>
+
+        
+
+
+
+        
+
+        
+        <div class="" id="parent-fieldname-text">
+            
+
+<h2>Preamble</h2>
+
+<p>&nbsp;</p>
+
+<p>This Bio-Linux 7 user guide provides a first point of reference queries about Bio-Linux usage, setup and administration. For general Linux configuration help we recommend the&nbsp;<a class="external-link" href="https://help.ubuntu.com/10.04/index.html">Ubuntu Documentation</a>&nbsp;site and the&nbsp;<a class="external-link" href="http://ubuntuguide.org/wiki/Ubuntu:Lucid">Ubuntu Guide</a>&nbsp;site. For Linux problems not addressed here please feel free to&nbsp;<a class="external-link" href="mailto:helpdesk@nebc.nerc.ac.uk">email the NEBC helpdesk</a>.</p>
+
+<p><em>This guide has recently been updated to reflect changes in Bio-Linux 7. &nbsp;Please report any issues to the Helpdesk.</em></p>
+
+<p>As with all documents on this website (apart from our scientific publications) you are free to redistribute and modify this content for your own purposes. &nbsp;We welcome translations.</p>
+
+<p>Anja Skrba from <a class="external-link" href="http://science.webhostinggeeks.com">WebHostingGeeks.com</a> has kindly provided <a class="external-link" href="http://science.webhostinggeeks.com/bio-linux-60-uputstvo">a translation of the User Guide in Serbo-Croatian</a>.</p>
+
+<h1>Bio-Linux 7 User Guide<br /></h1>
+
+<ol start="1"><li><a href="#accounts">User Accounts</a>
+
+<ul><li><a href="#adminpasswd">Administration accounts</a> </li><li><a href="#newaccounts">Create new accounts</a></li><li><a href="#groups">Add users to groups</a></li><li><a href="#shells">Supported shells<br /></a></li>
+
+<li><a href="#passwd">Changing passwords</a> </li>
+
+<li><a href="#root">Root shell</a></li><li><a title="Default umask" href="#default-umask">Default umask</a><br /></li></ul>
+
+</li><li><a href="#sysconfig">System Configuration and Daily Maintenance</a>
+
+<ul><li><a class="external-link" href="#etc">Configuration files in /etc</a><br /></li><li><a href="#network">Entering or changing network settings</a> </li><li><a href="#uptodate">Software updates</a> </li><li><a href="#responsibilities">Systems administrator role</a> </li><li><a href="#syslogs">System logs</a></li><li><a href="#monitoring">Monitoring processes</a> </li><li><a href="#backupdirectories">Backups</a> </li><li><a href="#firewall">Firewall</a> </li><li><a href="#services">Enable and disable services</a> </li></ul>
+
+</li><li><a href="#access">Accessing and Connecting to Bio-Linux</a>
+
+<ul><li><a href="#remotelogin">Ways to login remotely</a> </li><li><a href="#email">Email</a> </li><li><a href="#scp">Copying files between computers</a> </li><li><a href="#databases">Databases</a> </li></ul>
+
+</li><li><a href="#software">Software Applications</a>
+
+<ul><li><a href="#whatsoftware">Bioinformatics software</a> </li><li><a href="#newsoftware">Installing new software</a> </li><li><a href="#equivalent">Linux alternatives to Windows software</a> </li><li><a href="#windows">Running or replacing Windows programs on Linux</a> </li></ul>
+
+</li><li><a href="#hardware">Hardware</a>
+
+<ul><li><a href="#usbkey">Removable devices - USB keys</a> </li><li><a href="#printing">Printing</a> </li><li><a href="#nfs">NFS mount filesystems</a> </li><li><a href="#netdrives">Shared network drives</a> </li></ul>
+
+</li><li><a href="#web">Web Server</a>
+
+<ul><li><a href="#syshtml">Using Bio-Linux as a webserver</a> </li><li><a href="#userhtml">Setting up user html pages</a> </li><li><a href="#apachecgi">Running perl CGI scripts under Apache</a> </li></ul>
+
+</li><li><a href="#general">General use</a>
+
+<ul><li><a class="external-link" href="#text">Working with text<br /></a></li><li><a class="external-link" href="#acroread">Reading
+
+ PDF files</a></li><li><a class="external-link" href="pidgin">Social
+
+ Networking and Instant Messenger</a></li></ul>
+
+</li></ol>
+
+<hr />
+
+<ol start="1">
+
+<ol><li><a name="accounts"></a>
+
+<h2>User Accounts<a name="adminpasswd"></a></h2>
+
+<ul><li>
+
+<h3>Administration accounts<br /></h3>
+
+<p>The user you create when installing the system will automatically be given administrative, aka <a class="external-link" href="https://help.ubuntu.com/community/RootSudo">sudo, privileges</a>. This means that this user, by prepending the word "sudo" to commands, can execute those commands with root administrator privileges. To give others sudo (administrator) privileges for the whole system select <strong>Users Accounts</strong> from the System Settings menu and change the account type for that user to <strong>Administrator</strong>. For more fine-grained control, including restricting access to a specified set of commands, you will need to <a class="external-link" href="https://help.ubuntu.com/community/Sudoers">edit the sudoers file</a>. <br /><br />Another thing to note about administrative users is that they are <a class="external-link" href="accessing-bio-linux#seciss">added to the ssh group by default</a>. This means they can log into the system from other machines using ssh or NX.<br /><br /><em>Older machines upgraded from Bio-Linux 6.0 to 7 may have a&nbsp;<strong>NEBC Admin User</strong> account with the username <strong>nebc</strong>. This is an account that NEBC staff could use (<strong>solely for supported users and with permission</strong>) to log in to the system remotely, in case of an emergency. &nbsp;We no longer add this by default - you can safely delete this account.</em></p>
+
+</li><li>
+
+<h3><a name="newaccounts"></a>Create new accounts</h3>
+
+<p>To create a new account you will first need to log into an account with <a class="external-link" href="https://help.ubuntu.com/community/RootSudo">root (sudo) privileges</a>. We recommend that you use the graphical tool for managing users and groups. To start this tool, go to the System Settings menu (red icon with cog and spanner) and choose: <strong>User Accounts</strong>.&nbsp;</p>
+
+<p>Each user has a set of privileges, gained from being members of a set of particular groups. A new user created with the GUI will be created as a Standard User by 
+
+default. The GUI in Bio-Linux 7 does not provide fine-grained control of user privileges. &nbsp;To discover what groups a user named user1 is in, open a terminal and type:</p>
+
+<p>groups user1<br /><br />The default behaviour of the graphical tool mentioned above creates fully functional user accounts on Bio-Linux. To create a functional Standard user using the command line, you would need to run this command:<br /><br /><code>sudo adduser --add_extra_groups user1</code><br /><br />To upgrade the user to an administrator, you can then do:</p>
+
+<p><code>sudo usermod -aG adm,sudo,ssh user1</code></p>
+
+<p><br />Note that by default, Standard users are&nbsp; <a class="external-link" href="../accessing-bio-linux#seciss">not added
+
+ to the ssh group</a>. If you want a standard user to be able to log into your Bio-Linux system from another machine, using ssh or NX, then you <em><strong>must add them to the ssh group</strong></em>. Administrative users are included in this group by default.</p>
+
+<p>sudo usermod -aG ssh user1<br /><br />For further information, please see the <a class="external-link" href="https://help.ubuntu.com/10.04/serverguide/C/user-management.html">Ubuntu
+
+ documentation on User Management</a>.<a name="shells"></a></p>
+
+</li></ul>
+
+<ul><a name="groups"></a><li>
+
+<h3>Add users to groups</h3>
+
+There are many instances when you may wish to add users to groups. For example, perhaps particular people need full access to the ARB pt_server, which on Bio-Linux means they have to be members of the <strong>arb</strong> group. Or perhaps a group of people wish to work on a set of shared files - you can make these easily accessible by creating a group and adding the users involved to this group.<br /><br />Unfortunately, Ubuntu 12.04 does not have a satisfactory graphical interface to manage group membership. &nbsp;&nbsp;You should therefore add users to groups using the command <em>usermod </em>as in the examples above. &nbsp;As a further example, to add user1 to the arb group, so they can make full use of the ARB software, you would type:<br /><br /><code>sudo usermod -aG arb user1</code><br />There is no flag to remove groups, so to achieve this you have to run&nbsp;groups user1&nbsp;to see the list of groups and then&nbsp;sudo usermod -G group1,group2,group3,... user1&nbsp;to reset the groups list explicitly.</li><li>
+
+<h3>Supported shells</h3>
+
+<strong><a title="Bio-Linux Environment" class="internal-link" href="../other-bl-docs/bio-linux-environment#shells">Z
+
+ Shell</a> is the default shell </strong>within Bio-Linux. &nbsp;We like it for superior tab completion, succinct loop syntax and supporting conventions from other shells, among other things. Our choice means that you may have to undertake customisations of your own, such as setting environment variables, if you choose to use another shell such as tcsh. Customisations like aliasing the remove command, rm, to rm -i, so that users are asked to confirm whether they really wish to remove a file, are done through the /etc/zsh/zshrc file which is controlled by the bio-linux-zsh package on Bio-Linux systems.  This file also loads commands from /etc/zsh/zshrc.d/customrc.zsh which is the file you should customise to add system-wide settings and environment variables.&nbsp; Users should add their personal settings to ~/.zshrc.</li><li>The <strong>BASH</strong> shell is the default for Ubuntu and is also supported on the system, but we suggest that users should only use BASH if they have a particular preference for it. &nbsp;In order to ensure compatibility with Ubuntu technical documentation and system scripts, BASH is the default root shell - see below.<br /><a name="passwd"></a>
+
+</li><li>
+
+<h3>Changing passwords</h3>
+
+<p>You can change the password for accounts by  going to the System Settings icon and choosing:<strong>Users Accounts</strong>. Then click on the <strong>Unlock </strong>button at the top right, and after unlocking select the&nbsp;user you wish to change the password for in the left hand pane, and click on the Change text beside Password in the right hand pane.</p>
+
+<p>To change your own password does not require doing the unlock step but you will need to confirm your existing password in the next step.<br /><br />Changing your password on the command line is faster. Just open a terminal and type:</p>
+
+<blockquote><code>passwd</code></blockquote>
+
+<p>Entering your new password when prompted. Detailed information about password security can be found on <a href="http://www.dowling.edu/mydowling/tech/good-passwords.html">Chris Ihm's page on choosing a secure password</a>.</p>
+
+<p>If you are logged in as an administrator, you can reset the password for other users by using the command:</p>
+
+<blockquote><code>sudo passwd <em>username <br /></em></code></blockquote>
+
+<p><a title="Bio-Linux FAQ" class="internal-link" href="bio-linux-faq">The Bio-Linux FAQ</a> includes an item on what to do<a class="external-link" href="bio-linux-faq#forgotpassword"> if you lose your administrative user password</a>.</p>
+
+</li><li>
+
+<h3><a name="root"></a>Root shell</h3>
+
+<p>If you are coming to Bio-Linux from other Unix or Linux systems you may be wondering what happened to the root account.&nbsp; By default, the root account has no valid password in Ubuntu, and thus also in Bio-Linux. This means you can't login as root directly or use the su
+
+ command to become root. <br /><br />The use of sudo negates the need for a root password. You can get a root shell using the command <code>sudo -i</code> or alternatively <code>sudo bash</code>.  Note that bash is the default root shell for compatibility reasons.&nbsp;</p>
+
+</li></ul>
+
+<ul><li>
+
+<h3><a name="default-umask"></a>Default umask</h3>
+
+</li></ul>
+
+The setting of <strong>umask</strong> controls the default permissions on new files.&nbsp; The default umask in Bio-Linux used to be 077, as set in the files /etc/profile and /etc/login.defs. &nbsp;It is now set to the Ubuntu default of 002, which is more appropriate for single-user machines. &nbsp;A umask is an octal number which specifies which permissions bits will never be set for newly created files and directories.&nbsp; In this case, the choice of 002 means that all users may see files you create and those in the same group may write to them.&nbsp; If you are sharing the machine and don't want any other users to read your files, you probably want to protect your whole home directory by doing chmod 700 $HOME. &nbsp;This blocks access to all files within the home dir regardless of any permission settings. &nbsp;For more fine grained control you can set the umask with the <strong>umask</strong> command.&nbsp;The umask setting is inherited through the process tree just like an environment variable, so any user can put a line into ~/.zshrc to set the custom umask they want.&nbsp; Meaningful umask values are:</li>
+
+<ul><li>077 - only the owner has access</li><li>027 - users in the same group can read files but not write<br /></li><li>022 - anyone can read, only the owner can write<br /></li><li>002 - as above, but users in the same group can also write (default)</li><li>007 - owner or group members can read and write, others have no access<br /></li></ul>
+
+</ol>
+
+</ol>
+
+<p>&nbsp;</p>
+
+<ol start="1">
+
+<ol>
+
+<li>
+
+<h2>System Configuration and Daily Maintenance<a name="network"></a></h2>
+
+</li>
+
+<ul><li>
+
+<h3><a name="etc"></a>Configuration files in /etc</h3>
+
+</li>
+
+<p>As a general rule, system wide settings are controlled via text files held within the /etc folder.&nbsp; Often a graphical or command-line application is used to manipulate the settings, or the settings are written in by the Debconf package configuration system, but sometimes it is necessary or desirable to edit the files directly.&nbsp; See the final section of this guide for more information on text editors, but in general if you need to edit a system configuration file the invocation is:</p>
+
+<pre>sudo nano &lt;filename&gt;
+
+# for example:
+
+sudo nano /etc/zsh/zshrc.d/customrc.zsh</pre>
+
+<p>Here, the <strong>sudo</strong> command gives you permission to modify the protected system file, and <strong>nano</strong> is a simple text file editor.</p>
+
+</ul>
+
+</ol>
+
+</ol>
+
+<ol start="1">
+
+<ol>
+
+<ul><li>
+
+<h3>Entering or changing network settings<br /></h3>
+
+<p><em><strong>DHCP</strong></em><br />If your local network uses DHCP the <strong>Roaming network</strong> mode should detect your network without further action on your part. <br /><br /><em><strong>Static IP addresses</strong></em><br />If you have a static IP address you will need to ask your IT people for an <strong>IP address</strong> <strong>hostname</strong>, <strong>domain</strong>, <strong>gateway</strong> and <strong>DNS addresses</strong>.</p>
+
+<p>To configure your network settings open <strong>System Settings --&gt; Network</strong>. To modify the settings for any of your network devices you will need to be working in an account with <a class="external-link" href="https://help.ubuntu.com/community/RootSudo">sudo privileges</a>.&nbsp;</p>
+
+<p>To set the address for your wired ethernet connection click on the <strong>Wired </strong>&nbsp;connection and then the&nbsp;<strong>Options</strong>&nbsp;button. &nbsp;Click on the <strong>IPv4 Settings</strong> tab. From the <strong>drop-down Method box</strong>, choose <strong>Manual</strong>. Then click on the Add button. Add your IP address, netmask, gateway, along with your DNS Server addresses and search domains (if desired) below. The <span class="guilabel">search domains</span> are the default domains
+
+ in which your system will search any host when no domain is specified. This means if you have a machine called <em>mymachinename.mysite.com</em>, and you've entered <em>mysite.com</em> into the search domains, you can refer to the machine as just <em>mymachinename</em>, rather than writing out the full <em>mymachinename.mysite.com</em> each time.<br /><br />After you apply your changes, you should be connected to the internet. You can see this by looking for two small white, opposing arrows towards the right side of the top task bar. If you aren't connected, then you'll probably see a little signal icon (like a seashell, probably with an exclamation point in red on it) in the top taskbar. If you click on that icon, and choose the name of the connection you've just created from the list, a connection should then be established.&nbsp;</p>
+
+<p>Further information on setting up your network can be found on the <a href="https://help.ubuntu.com/8.04/internet/C/index.html">Ubuntu documentation</a> pages.<a name="uptodate"></a></p>
+
+</li><li>
+
+<h3>Software updates <br /></h3>
+
+<p>Every night, your system will check for updated packages in 
+
+the Bio-Linux bioinformatics software repository, the Ubuntu updates 
+
+repository and the Ubuntu security repository.<br /><br />Packages that need updating from the <a class="external-link" href="../../../bio-linux/dists/unstable/bio-linux/binary-amd64/">Bio-Linux&nbsp;
+
+ bioinformatics software repository</a> and the Ubuntu security 
+
+repository are downloaded and installed automatically. For other packages, you will be prompted to use the <a href="#updatemgr">Update Manager tool</a> for this when you log in as an administrator. &nbsp;If you are running a server that is in regular use but do not regularly log into the graphical desktop via an administrative account you should make time weekly to install new updates.<br /><br /></p>
+
+<p>By default, all package files downloaded to the system are kept in the cache <code>/var/cache/apt/archives</code>
+
+ for a week and are then deleted. &nbsp;After a big update you can manually clear out the cache to save space: &nbsp;sudo apt-get clean</p>
+
+<p>For more information about installing, removing and updating software including changing the Bio-Linux default settings, and alternative software available for managing packages, please see our <a title="Package Management" class="internal-link" href="package-management#Top">Package Management</a> page.<br /><br /><strong>Working behind a proxy</strong></p>
+
+<p>If your site uses an HTTP proxy for internet 
+
+connections you will need to configure Apt, the package management system, to use the same proxy. There 
+
+are some reports that there are problems using the Ubuntu Software 
+
+Centre from behind a proxy, so you may need to use command line tools or
+
+ the graphical tool Synaptic for your package management if you have 
+
+problems with the Software Centre.</p>
+
+<p>You can set up Apt to use your proxy by creating a file called <strong><em>01proxyconf</em></strong>&nbsp;
+
+ in
+
+ the directory <strong><em>/etc/apt/apt.conf.d/</em></strong>&nbsp; 
+
+containing the 
+
+following lines:</p>
+
+<blockquote><code>Acquire { http::Proxy 
+
+"http://&lt;proxyhost&gt;:&lt;port&gt;"; };</code></blockquote>
+
+<p>For example, if your website was called somewhere.ac.uk, and the port
+
+ was 2067, you would enter:</p>
+
+<code>Acquire { http::Proxy "http://somewhere.ac.uk:2067"; 
+
+};</code><code><a name="responsibilities"></a>
+
+</code><br /><br /></li><li>
+
+<h3>System administrator role</h3>
+
+<p>A system administrator is responsible for the security of the machine, installation of software, creating new user accounts and performing backups. The system administrator is also responsible for ensuring that only people deemed trusted for identified tasks have the appropriate permissions and privileges (e.g. <a class="external-link" href="https://help.ubuntu.com/community/RootSudo">sudo privileges</a>) to carry out those tasks.</p>
+
+<p>We recommend that you maintain a <strong>logbook</strong> for your machine. (We find a real, paper, hardcopy logbook is the most effective.) In this logbook, write down every change that you make. These notes should be kept clear and complete so that you can reconfigure the machine from a fresh installation should you experience a hardware failure and need to reinstall. Keeping such a detailed record of what you have done to your system may seem tedious and unnecessary until the day something goes wrong for the second time. Then, those comprehensive notes from the first time you solved your problem will come in mighty handy and save a lot of time.</p>
+
+<p>You should check that the system updates are being made correctly by looking at the package status reports (for example, through the Synaptic tool or by reading the file <strong><em>/var/log/cron-apt/log</em></strong> ). You should also check the security logs. Please see the section below for more on this topic.<a name="syslogs"></a></p>
+
+</li><li>
+
+<h3>System logs</h3>
+
+<p>The system log files are located in the directory <strong><em>/var/log/</em></strong>&nbsp; and contain records of activity on your computer including kernel version, drivers in use, email activity, webserver access, logins and attempted logins, and much more. While we would advise all systems administrators to be aware of the logs and to know how to check them manually, there is a program called <strong>logcheck</strong> installed on Bio-Linux that will help to automate this task. Documentation about logcheck can be found by reading the man page using the command:</p>
+
+<blockquote><code>man logcheck</code></blockquote>
+
+<p>Logcheck scans all the log files listed in the file <strong><em>/etc/logcheck/logcheck.logfiles</em></strong>&nbsp; and using information in other files under <strong><em>/etc/logcheck</em></strong>&nbsp; it "decides" which information to report to you. Essentially, logcheck reports everything that it is not configured to ignore.</p>
+
+<p>On Bio-Linux 6.0, logcheck is run daily at 6:02am, and the reports are sent to the mail spool for the primary administrator user (the user account you create during installation). This means the logcheck reports can be read by the system administrator using an email tool such as mutt or Evolution.</p>
+
+<p>However, it is likely to be simpler if you send the reports to an email account you check regularly. To do this, you need to edit&nbsp; the <strong>/etc/logcheck/logcheck.conf </strong>file and set the <strong>SENDMAILTO</strong> option to your normal e-mail address. You can include multiple addresses to send the reports to, by listing
+
+ the addresses separated by a comma.&nbsp; To send the mail to an address outside your Bio-Linux system, you will need to configure the Exim mail program so it knows about your local SMTP server.&nbsp; Please see the section <strong><a href="#email">Email</a></strong> on Bio-Linux.<a name="monitoring"></a></p>
+
+</li><li>
+
+<h3>Monitoring processes</h3>
+
+<p>After you click on a button or icon to start up a program, there may be a short delay for some programs before you see them or can interact with them. Some programs show you an icon indicating that something is happening. However, there are a few that don't. &nbsp;If after a few seconds, nothing appears to be happening, you can investigate whether the program has started or not.</p>
+
+<p>The easiest way to do this is to run the System Monitor tool - search "system" in the <strong>Dash Home</strong>. A list of what your system is running can be found under the Processes tab. If you go to the View menu, you can choose whether to view just the processes owned by the user you are logged in as, or all processes. <br /><br />There is also a command line tool you can use to see all the jobs a particular user is running on the system:</p>
+
+<blockquote><code>ps -fu user1</code></blockquote>
+
+<p>To find out what you yourself are running, you can type:</p>
+
+<blockquote><code>ps -fu $USER</code></blockquote>
+
+<p>You can replace $USER with your username in the above command, or just let the shell do this: it will replace $USER with your login name. &nbsp;Note that&nbsp;ps -f&nbsp;shows only processes in the current terminal. &nbsp;ps -fux&nbsp;gives a full listing and shows process relationships so this is a particularly useful invocation.</p>
+
+<p><br />To read about other options available with the&nbsp; <em><strong>ps</strong></em>&nbsp; 
+
+command, type:</p>
+
+<blockquote><code>man ps</code></blockquote>
+
+<p>To list processes in order of the demand they are putting on your system (CPU usage), you can use the&nbsp; <em><strong>top</strong></em>&nbsp; program. Simply type:</p>
+
+<blockquote><code>top</code></blockquote>
+
+<p>on the command line. (press q to quit)<a name="backupdirectories"></a></p>
+
+</li><li>
+
+<h3>Backups</h3>
+
+<p>Bio-Linux can be configured to use a second physical disk for automated backups using a script. The first administration account created on the machine will have an icon on the desktop that can aid in setting up a second drive or partition for automated backups. Information on backing up data can be found on our <a title="Backing Up and Restoring" class="internal-link" href="other-bl-docs/backing-up-and-restoring">Backing up and Restoring</a> page.<a name="firewall"></a></p>
+
+</li><li>
+
+<h3>Firewall</h3>
+
+<p>Bio-Linux comes preconfigured with the firewall program <strong>ufw</strong>. By default this is configured to allow incoming ssh connections only. This can be easily reconfigured using the graphical interface to ufw. Search for <strong>firewall</strong>&nbsp;in the <strong>Dash Home.</strong><a name="services"></a></p>
+
+</li><li>
+
+<h3>Enable and disable services</h3>
+
+<p>Services are programs which run in the background on the machine. Examples include sshd, apache2, mysql, ufw, and crond. Such services run all the time when the machine is on, no matter who is logged in.</p>
+
+<p>We advise you not to turn off any of the currently running services as some tools expect them to be working, and recommend that you liaise with your IT department before you turn any new services on.&nbsp; The Bio-Linux Live system runs a more limited set of services than an installed Bio-Linux system: on live systems, sshd, apache2, postgresql and mysql all inactive by default, whereas they are active on the installed system.<br /><br />You can start, stop or reload the configuration file for services from the command line. Eg.</p>
+
+<p>To de-activate the Apache web server from a terminal, type:</p>
+
+<blockquote><code>sudo /etc/init.d/apache2 stop</code></blockquote>
+
+<p>To tell PostgreSQL to reload the access configuration file:</p>
+
+<blockquote><code>sudo pg_ctlcluster 9.1 main reload</code></blockquote>
+
+<p>To restart ssh:</p>
+
+<blockquote><code>sudo /etc/init.d/ssh restart<br /><br /></code></blockquote>
+
+The <strong><a class="external-link" href="http://upstart.ubuntu.com/">new Ubuntu upstart system</a></strong> is 
+
+now running the show for several packages. Upstart is an event-based init daemon, taking the 
+
+place of the older dependency-based init daemon. The upshot of it 
+
+is that many of the scripts that control the startup and
+
+ shutdown of the system are actually held in the /etc/init folder. You call them, as well as other init scripts from the /etc/init.d folder. That is: some of the files in /etc/init.d are scripts, but some
+
+ are just softlinks to a file called /lib/init/upstart-job, which causes
+
+ a script in /etc/init to be run (if the appropriate script is found 
+
+there).&nbsp; Frankly though, for most people, it makes no difference if nothing in the preceding paragraph makes any sense to you. <br /><a name="access"></a>
+
+</li></ul>
+
+<li>
+
+<h2>Accessing and Connecting to Bio-Linux<br /></h2>
+
+<p><a name="remotelogin"></a></p>
+
+</li>
+
+<ul><li>
+
+<h3>Two ways to login remotely</h3>
+
+<p>Two methods of logging into your Bio-Linux system from another machine are mentioned briefly here. We also provide a webpage with 
+
+further details about <strong><a title="Accessing Bio-Linux" class="internal-link" href="accessing-bio-linux">accessing
+
+ Bio-Linux</a></strong>, as well as a page of <strong><a title="Different ways to run Bio-Linux" class="internal-link" href="../other-bl-docs/waystorunbl">different
+
+ ways you can run Bio-Linux</a></strong>.<br /><br /><strong>NX - </strong>&nbsp; This is our recommended method of logging in remotely to Bio-Linux. This allows you to view the full desktop just as you would when 
+
+sitting in front of the computer. Interaction can be very fast even over a modest internet connection.&nbsp; To do this, you just need to install NX client software on the machine you want to connect to Bio-Linux from. Such client software is available for Windows, Linux and Macs. For further 
+
+instructions, please see the <a title="Accessing Bio-Linux" class="internal-link" href="accessing-bio-linux#freenx">Accessing
+
+ Bio-Linux</a> webpage.<br /><strong><br />SSH client -&nbsp; </strong>There are many pieces of client software you can use on other machines to connect to your Bio-Linux system using <strong>ssh</strong>. To connect from a Windows computer we recommend you use "PuTTY" which can be downloaded from <a href="http://www.chiark.greenend.org.uk/%7Esgtatham/putty/download.html">here</a>. If you wish to use Putty with Exceed you will need to enable "X11 forwarding" in the PuTTY preferences. You can also try the <a class="external-link" href="http://www.cygwin.com/">openssh client through Cygwin</a>. In general, if you want a graphical connection, we recommend that you consider using NX.</p>
+
+<p><a name="email"></a></p>
+
+</li><li>
+
+<h3>Email</h3>
+
+<p>The standard email client on Bio-Linux is&nbsp; <a href="../../userguide#email"><strong>Evolution</strong></a> (which works much like Microsoft Outlook) and can be set up by clicking on the icon of an envelope on the right hand side of the top taskbar and choosing <strong>Set Up Mail...</strong> You will need to configure Evolution with the details of your incoming and outgoing email servers and indicate whether the POP3 or IMAP protocol should be used. You may need to speak to your local IT staff to determine the correct settings.<br /><br />If you want to set up <a href="../userguide#email"><strong>Evolution</strong></a>
+
+ to read the logcheck messages (described above), you need to be logged in as an administrative user. Then:</p>
+
+<ul><li>
+
+<ol start="1"><li>
+
+<p>Launch <strong>Evolution</strong>;</p>
+
+</li><li>
+
+<p>Go to <strong>Edit --&gt; Preferences</strong>;</p>
+
+</li><li>
+
+<p>Click the <strong>Add</strong>&nbsp; button;</p>
+
+<p>You will then be guided through a Mail Configuration wizard;</p>
+
+</li><li>
+
+<p>On the Identity menu:</p>
+
+<ul><li><strong>Full Name:</strong> "system mail" (or whatever name you find 
+
+suitable for this account) </li><li><strong>Email Address:</strong> someuser@localhost (provide your user name before the @ symbol) </li></ul>
+
+<p>You don't need to fill in any further details on this menu;</p>
+
+</li><li>
+
+<p>On the Receiving E-mail menu, you need to provide the following information:</p>
+
+<ul><li><strong>Server Type:</strong> Standard Unix mbox spool file </li><li><strong>Path:</strong>
+
+ <em>/var/mail/manager&nbsp;</em></li></ul>
+
+</li><li>
+
+<p>Set the Server Type on the Sending E-Mail menu to Sendmail. That is all you should need to configure in Evolution.</p>
+
+</li></ol>
+
+<br />
+
+<p>If you want to <em>send system mail to an 
+
+email address outside the Bio-Linux machine</em>, you will need to reconfigure <strong>exim4</strong>, the default Message Transfer Agent 
+
+(MTA) in Bio-Linux 7. You can reconfigure it by typing (in a 
+
+terminal):</p>
+
+<blockquote><code>sudo dpkg-reconfigure exim4-config</code></blockquote>
+
+If you're having problems configuring this, you can have a look at a the
+
+ well documented <a class="external-link" href="https://help.ubuntu.com/community/Exim4">Ubuntu
+
+ documentation</a> pages. </li></ul>
+
+<p><a name="scp"></a></p>
+
+</li><li>
+
+<h3>Copying files between computers</h3>
+
+<p>Files available via a local or remote web or ftp server can be fetched onto your Bio-Linux system using a number of tools. For example, you can use a web browser,&nbsp; you can use the <strong>Connect to Server...</strong> option under the Places menu in the top taskbar, or you can use the versatile <em><strong>wget</strong></em>&nbsp; utility on the command line. There is also a standard command line ftp client for uploading files to an ftp site. Both wget and ftp are well described on the respective man pages, which you can view by typing:</p>
+
+<blockquote><code>man wget</code></blockquote>
+
+<blockquote><code>man ftp</code></blockquote>
+
+<p>For moving files securely between machines on which you have accounts, we recommend the use of&nbsp; <em><strong>scp</strong></em>. This is part of the&nbsp; <em><strong>ssh</strong></em>&nbsp; package. It can be used to move files to or from any machine to which you have ssh access. So if you would normally log into a machine with the command:</p>
+
+<blockquote><code>ssh user2@comp2</code></blockquote>
+
+<p>then you can put a file from the current directory on machine comp1 onto comp2 using</p>
+
+<blockquote><code>scp ./myfile user2@comp2:/home/user2/myfile</code></blockquote>
+
+<p>You will be prompted for the user2 password. Then the file will be copied into the user2 home directory. See the scp man page for more details and examples. &nbsp;This works the other way round too, copying from remote to local.</p>
+
+<p>There is also an 'sftp' command which emulates an ftp session over the ssh connection, and a powerful command called 'rsync' is useful for copying whole directories of files recursively. Again, the man pages for these commands are good first port of call for further details.</p>
+
+<p>If you want to transfer files to (or from) your Linux machine from a Windows PC, the free application <a href="http://winscp.net">WinSCP</a> will do the job.  If using a Mac, you can use the command-line <em>scp</em> or a tool such as <a href="http://cyberduck.ch/">Cyberduck</a>.</p>
+
+<p>&nbsp;</p>
+
+<a name="databases"></a>
+
+</li><li>
+
+<h3>Databases</h3>
+
+<p>Bio-Linux comes with Postgres and MySQL databases preconfigured. On the installed system, these services are running by default. (On the Live system, they are not.)&nbsp; <br /><br />If you wish to connect to either database system from another machine, you will need to reconfigure the Bio-Linux firewall to allow incoming connections on port 5432 (for Postgres) or 3306 (for MySQL). To modify the firewall settings use the Administration --&gt; Firewall&nbsp; option in the System menu.</p>
+
+<p>Futher details on configuring databases can be found on the <a title="SQL Databases on Bio-Linux" class="internal-link" href="sql-databases-on-bio-linux#documentContent">SQL Databases on Bio-Linux</a> page.<a name="software"></a></p>
+
+</li></ul>
+
+<li>
+
+<h2>Software Applications<a name="whatsoftware"></a></h2>
+
+<ul><li>
+
+<h3>Bioinformatics software</h3>
+
+<p>Bio-Linux comes with a comprehensive bioinformatics documentation system. It provides access to categorised information about all the bioinformatics software on your Bio-Linux system, as well as some additional software that can be easily installed. On each user's desktop, there is a <strong>Bioinformatics Docs icon</strong> that can be clicked on to open up the documentation in a web browser. Alternatively, you can type the following URL into a webbrowser on your Bio-Linux machine:</p>
+
+<blockquote><code>http://localhost/bioinformatics</code></blockquote>
+
+<p>Most software described in those pages is pre-installed on your system; the Description section for a given piece of software will state explicitly if the software is <em>not</em> already installed, and will provide instructions on how to install it. <br /><br />If you want to find out definitively if a particular piece of software is installed and ready to run on your system, try the command</p>
+
+<blockquote><code>which <em>software-name</em><br /></code></blockquote>
+
+<p>Note that this will only find the name of the actual command, not software packages. (e.g. it will find blastp, but not blast+). <br /><br />You can search for installed and available software tools using the <a href="#uptodate">system package management tools</a>. <br /><br /><em><strong>Some</strong></em> bioinformatics software can be run from options under the <strong>Applications --&gt; Bioinformatics</strong>&nbsp; menu on the desktop. All bioinformatics software, including software with graphical interfaces, can be started from the command line. Please refer to our <a class="external-link" href="../../courses/Bio-Linux/Bio-Linux_feb2009/IntroductionToBio-Linux5.0_Feb2009.pdf">Introduction to Bio-Linux tutorial</a> for examples of working with the bioinformatics software on Bio-Linux.<a name="newsoftware"></a></p>
+
+</li><li>
+
+<h3>Installing new software</h3>
+
+<p>For a simple method to search for and install software, we recommend the new <strong>Ubuntu Software Centre</strong>.&nbsp; Another graphical tool you will come across, which is also very good though slightly (not much) more technical is <strong>Synaptic</strong>.&nbsp; You will find the Ubuntu Software Centre in the main Dash menu bar.&nbsp; Synpatic can be started from the <strong>Dash Home.</strong><br /><br />Your Bio-Linux system is pre-configured to look for software in a number of repositories. You can see which these are by going to the <strong>Edit menu</strong> of the Ubuntu Software Centre and choosing <strong>Software Sources...</strong></p>
+
+<p>Please refer to the<strong><a title="Package Management" class="internal-link" href="other-bl-docs/package-management"> Bio-Linux Package Management page</a></strong> for further information about the default setup for Bio-Linux package updates and additional information about software management on Bio-Linux. <strong>Ubuntu</strong> provides provides online documentation about <a class="external-link" href="https://help.ubuntu.com/10.04/add-applications/C/installing.html">Adding and removing packages </a>using graphical tools, while the <a class="external-link" href="http://ubuntuguide.org/wiki/Ubuntu:Lucid#Package_Installation_and_Updates"><strong>Ubuntu Guide</strong></a> provides a useful outline of the command line you can use for installing and managing packages on your system.<strong><br /><br /></strong></p>
+
+</li><li>
+
+<h3>Linux alternatives to Windows software<br /></h3>
+
+<p>Check out the <a class="external-link" href="http://www.linuxalt.com/"><strong>Linux Alternative Project</strong></a> page.</p>
+
+<a name="windows"></a>
+
+</li><li>
+
+<h3>Running or replacing Windows programs on Linux</h3>
+
+<p>For many people, there are free, open source programs on Linux that 
+
+have the same functionality as programs on Windows. Sometimes the 
+
+programs have the same names, but often they don't. <a class="external-link" href="http://www.libervis.com/wiki/index.php?title=Table_of_Equivalent_Software">A
+
+ categorised listing of Linux and Windows program names is on the 
+
+Libervis Wiki</a>.</p>
+
+For further information on Linux alternatives to Windows programs 
+
+take a look at <a href="http://www.linux.ie/newusers/alternatives.php">http://www.linux.ie/newusers/alternatives.php</a>
+
+<p><br />There is also software, 
+
+available via the Ubuntu Software Centre, that allows you to run much 
+
+Windows software on Linux such as <a class="external-link" href="http://www.playonlinux.com/en/">PlayOnLinux</a>, which is based on
+
+ <a class="external-link" href="http://www.winehq.org/">Wine</a>.<br /><br />One of the most common things people want to 
+
+do is to run office software - document editors like Word, or 
+
+spreadsheet software like Excel. The powerful <a class="external-link" href="http://www.openoffice.org/">OpenOffice suite </a>of software comes
+
+ as standard on your Bio-Linux system and can be found in the main Dash menu bar. &nbsp;You may also want to install the <a class="external-link" href="http://projects.gnome.org/gnumeric/doc/gnumeric.shtml">Gnumeric 
+
+Spreadsheet</a> software, which is not on the default image but can be found via the Software Centre<br /><br />While OpenOffice does a lot, there are 
+
+certain things, generally of interest to power users, that you can't do.
+
+ VBA programming for example. In cases like this, or any software that 
+
+there is no equivalent in Linux for, you could consider one of several 
+
+options:<br /><br /></p>
+
+<ol><li>Run emulation software like Wine (or PlayOnLinux, mentioned above), which then allows you to run 
+
+Microsoft Windows software inside the emulator.</li><li>Run Windows as a
+
+ virtual system on your Linux system, by installing a product like those
+
+ released by VMWare or VirtualBox on Linux and installing Windows to run
+
+ virtually.</li><li>Run Linux as a virtual system on your Windows 
+
+machine by installing a product like those released by VMWare or 
+
+VirtualBox on Windows and installing Linux to run virtually.</li><li>Install
+
+
+
+ a dual-boot system, allowing you to log into either Windows or Linux on
+
+ your machine.<br /></li></ol>
+
+</li></ul>
+
+<p><br /><a name="acroread"></a></p>
+
+</li>
+
+<li>
+
+<h2>Hardware</h2>
+
+<p><a name="mnt-intro"></a>Data may be stored in various physical storage devices, like CD-ROMs, DVDs, USB memory sticks and hard disk drives. These storage devices are attached into the global filesystem heirarchy on your system before the data on them can be accessed. The process of attaching the devices to your system is called <em>mounting</em>. The directory where the device is attached is called a <em>mount point</em>.</p>
+
+<p>Luckily, in most cases, your Bio-Linux system will detect and <em>automount</em> new physical storage devices under the /media area. Usually, it will also show you an icon on the desktop for filesystems it has mounted - like your underlying hard drive when you are working on the live system, or an attached USB key. <br /><br />Knowing about mounting and unmounting is still useful. For example, sometimes you will want to carry out more complex tasks like making files on your Bio-Linux system available to other machines, adding an extra hard disk into the regular filesystem hierarchy, or force-unmounting an unresponsive USB drive instead of having to reboot to deal with it.</p>
+
+<p>Some general information about file systems and mounting are available from the <a href="https://help.ubuntu.com/community/Mount#line-30">Ubuntu Community Help pages</a>. See also the links at the bottom of that page.<br /><br /></p>
+
+<p>To list all the mounted devices on your machine, with the mountpoints, you can just type:</p>
+
+<blockquote><code>mount</code><a name="usbkey"></a></blockquote>
+
+<p>&nbsp;</p>
+
+<ul><li>
+
+<h3>Removable devices - USB sticks and hard drives</h3>
+
+<p>When you plug a USB key or removable device into your Bio-Linux computer it will appear as an icon on your desktop. Before removing an external storage device you should <em>remember to unmount the device first</em>. This can be done by right-clicking on the desktop icon and selecting <strong>Unmount Volume</strong>.</p>
+
+<em>Note: Users have reported seeing the error "Cannot mount volume - invalid mount option". It seems that this can be fixed by looking in /etc/fstab for a line something like "/dev/sdc1 /media/cdrom0 ...etc..." and commenting it out or deleting it entirely.<br /></em>Further details about mounting and unmounting USB sticks can be found in the <a class="external-link" href="https://help.ubuntu.com/community/Mount/USB">Ubuntu Community Help pages</a>.
+
+</li><li><a name="printing"></a>
+
+<h3>Printing</h3>
+
+<p>The printing administration interface can be found under <strong>System Settings --&gt; Printing</strong>. This interface provides an alternative view to the web based interface of Cups which you may be familiar with from earlier versions of Bio-Linux. If you prefer, the Cups administration page is still available at:</p>
+
+<blockquote><code>http://localhost:631</code></blockquote>
+
+<p>You will hopefully find the Printing administration wizard easy to use but for further instructions on printer setup we would recommend you consult the <a href="https://help.ubuntu.com/8.04/printing/C/index.html">Ubuntu documentation</a>.</p>
+
+</li><li><a name="nfs"></a>
+
+<h3>NFS mount filesystems</h3>
+
+<p>You can make the drives of your Bio-Linux machine available to other machines at your site. For example, perhaps you have blast databases on one machine and would like to make these available to people working on other Linux systems. For this example, we assume your blast databases are in the folder: /home/db/blastdb</p>
+
+<p>The main steps for doing this are:</p>
+
+<ol start="1"><li>
+
+<p><strong>Edit the file on the machine you want to export the Filesystem from -</strong>&nbsp; e.g. here, this is the machine with the blast databases on it. Depending on the exact details of what you want to do, you could add a line to the file <strong><em>/etc/exportfs</em></strong>,&nbsp; like:</p>
+
+<blockquote><code>/home/db/blastdb mymachine.ip.add.ress(rw)</code></blockquote>
+
+<p>which would give the machine with address <em><strong>mymachine.ip.add.ress</strong></em> the ability to mount the file system found at:</p>
+
+<blockquote><code>/home/db/blastdb</code></blockquote>
+
+<p>on this machine, and users on <em><strong>mymachine.ip.add.ress</strong></em> with appropriate permissions the right to read it and to write to it.</p>
+
+<p>For sharing a directory with a range of machines on the network, and with more fine grained control over read and write access you may use:</p>
+
+<blockquote><code>/home/db/blastdb *my.domain.here(ro) my.ip.add.ress(rw)</code></blockquote>
+
+<p>which would grant read-only (ro) access to all machines on the my.domain.here network and read-write (rw) access to my.ip.add.ress for the directory <strong><em>/home/db/blastdb</em></strong>. For more information on exports consult the man page:</p>
+
+<blockquote><code>man exportfs</code></blockquote>
+
+</li><li>
+
+<p><strong>Restart the nfs-kernel-server on the exporting machine -</strong>&nbsp; You will need to restart the nfs-kernel-server on the machine on which you have just edited the <strong><em>/etc/exportfs</em></strong>&nbsp; file. To do that, type:</p>
+
+<blockquote><code>sudo /etc/init.d/nfs-kernel-server restart</code></blockquote>
+
+</li><li>
+
+<p><strong>Edit the firewall settings -</strong>&nbsp; On the machine you want to export the filesystem from (here, the one with the blast databases), go to <strong>Open Firewall&nbsp;Configuration</strong>. Then <strong>Edit --&gt; Add Rule</strong> and select the advanced tab.&nbsp; Choose "Allow" "In" "Both" and put the numeric address of the client machine in the <strong>From</strong> box.&nbsp; Click <strong>Add</strong>.</p>
+
+</li><li>
+
+<p>The above rule will open the firewall to all connections from that client.&nbsp; It is possible to specify a range of hosts.</p>
+
+</li><li>
+
+<p><strong>Mount the Filesystem -</strong>&nbsp; In the case of the export defined above, you would now be able to mount the filesystem on the second machine by typing something like the following on that machine:</p>
+
+<blockquote><code>sudo mount mymachine.ip.add.res:/home/db/blastdb /my/blastdb/location</code></blockquote>
+
+<p>If you wish the filesystem to always be mounted on your second machine at boot time, edit the <strong><em>/etc/fstab</em></strong>&nbsp; file on this machine, and restart nfs-common:</p>
+
+<blockquote><code>sudo /etc/init.d/nfs-common restart</code></blockquote>
+
+<p><strong>Please note -</strong>&nbsp; If you want users to have write access on both machines, you will need to synchronize the user accounts across the machines as well so that all users have matching UIDs as revealed by&nbsp;id $USER.</p>
+
+<p><a name="netdrives"></a></p>
+
+</li></ol>
+
+</li><li>
+
+<h3>Shared network drives</h3>
+
+<p>You can configure your Linux machine to access Novel Netware shared drives on your site. The details of how to do this varies from site to site; you will need to know information about the drives at your site, as well as learning about how Linux uses mount points and the <strong><em>/etc/fstab</em></strong>&nbsp; file.</p>
+
+<ul><li>
+
+<h4>One-off setup -</h4>
+
+<p>You only need to carry out the steps in this section once to access a Netware share via IP from your Bio-Linux system.<br /><br />1) <strong>install the ncpfs package</strong>. If you are using command line tools, you could ty<br /><br /><code>sudo apt-get update <br />sudo apt-get install ncpfs</code></p>
+
+<p>2) create a mount point: this&nbsp; is just a regular (empty) directory. We suggest that you put it&nbsp; either in the user's <strong><em>home</em></strong> directory, or in the system-wide <strong>mnt</strong> folder:</p>
+
+<blockquote><code>sudo mkdir /mnt/netware</code></blockquote>
+
+</li><li>
+
+<h4>Mounting the file system -</h4>
+
+This must also be re-done after any system reboot:
+
+<blockquote><code>ncpmount -S &lt;remote server (logical) name&gt; -A &lt;remote server dns name&gt;&nbsp; -U&nbsp; &lt; remote system username&gt; -u &lt; local system username&gt; -g &lt;locate user group&gt; -o udp &lt;your mountpoint&gt;<br /></code></blockquote>
+
+<p><strong>For example, something like:</strong><br /><code>sudo&nbsp; ncpmount -S mywindrive -A mywindrive -U username.remote.machine.address -u $USER -g mygroup -o udp /mnt/netware/</code><br /><br />One word of caution: NCPmount does not map file permissions correctly, and using the -u flag simply causes the local system to regard all netware files as owned by the named user. <br /><br />You can now browse/copy files to the netware servers. It may be 
+
+worth making your mounted volume accessible to you only (permissions set
+
+ to 0700), as anybody logged in may be able to browse your mounted netware 
+
+volumes if your home directory has read permissions to all (0755). <br /><br />The above commands must be run using sudo - so the person running them must have administrator privileges. You can make the ncpmount command 'suid', but this is a potential security hole. Only do this if you really need regular users to be able to mount Netware drives.</p>
+
+<blockquote><code>chmod u+s /usr/bin/ncpmount /usr/bin/ncpumount</code></blockquote>
+
+</li></ul>
+
+</li></ul>
+
+</li><li>
+
+<h2>Web Server</h2>
+
+<ul><li>
+
+<h3>Using Bio-Linux as a webserver</h3>
+
+<p>Apache2 is installed by default, but the internal firewall will only allow access to localhost. Pages placed under the folder <strong><em>/var/www</em></strong>&nbsp; can be accessed using the base url:</p>
+
+<blockquote><code>http://localhost/</code></blockquote>
+
+<p>If you intend to run a public webserver you need to be aware of the security implications of opening up Apache to the outside world. It will be down to local IT policy whether your machine can be permitted to run any web service and who will be able to access it.</p>
+
+</li><li>
+
+<h3>Setting up user html pages</h3>
+
+<p>Users on your system can put static HTML and other files under a folder called public_html in their home directory. For a user with the username <strong>user1</strong>, these pages can then be accessed using the base url:</p>
+
+<blockquote><code>http://localhost/~user1/</code></blockquote>
+
+<p>To be viewable, the public_html directory, and any subdirectories, will have to be world executable, and the files within these directories will need to be world readable. Cgi scripts will not be executed by default. The system administrator must make alterations to the Apache configuration file to allow this. You can find detailed information on setting up Web Servers here: <a class="external-link" href="https://help.ubuntu.com/community/Servers">https://help.ubuntu.com/community/Servers</a></p>
+
+</li><li>
+
+<h3>Running perl CGI scripts under Apache</h3>
+
+<p>The default Apache setup will only run CGI scripts placed in:</p>
+
+<blockquote><code>/usr/lib/cgi-bin</code></blockquote>
+
+<p>Creating and running web scripts via CGI can be a fiddly process due to file permissions issues, the requirements for sending the correct headers to the server and the limitations of the HTTP protocol. Exposing your CGI on a publicly accessible site is a potential security hazard and if you intend to do this you should carefully consider your Apache setup to minimise the risk of hacking.</p>
+
+<p>Having said that, the following quick modification to the standard Apache setup will CGI-enable the public_html directories for all users. Simply edit the file <strong><em>/etc/apache/httpd.conf</em></strong>&nbsp; and find the bit that looks like this:</p>
+
+<blockquote><code>&lt;Directory /home/*/public_html&gt;<br />AllowOverride FileInfo AuthConfig Limit<br />Options MultiViews Indexes SymLinksIfOwnerMatch IncludesNoExec </code></blockquote>
+
+<p>You want to change the last word and add a line to make it look like this:</p>
+
+<blockquote><code>&lt;Directory /home/*/public_html&gt;<br />AllowOverride FileInfo AuthConfig Limit<br />Options MultiViews Indexes SymLinksIfOwnerMatch ExecCGI<br />AddHandler cgi-script .cgi .sh .pl </code></blockquote>
+
+<p>Then in a terminal, type:</p>
+
+<blockquote><code>sudo /etc/init.d/apache2 reload</code></blockquote>
+
+<p>to make Apache pick up the changes.<a name="general"></a></p>
+
+</li></ul>
+
+</li><li>
+
+<h2>General use</h2>
+
+<ul><li>
+
+<a name="text"></a>
+
+<h3>Working with text<br /></h3>
+
+<h3>Editing text</h3>
+
+<p>There are many programs on Linux that will allow you edit text files. Some of these are easy to use such as gedit and nano. Other powerful editors, with very useful features, can have a steep learning curve. Examples in this category include vim and emacs. For the new user we would recommend the graphical program <a href="https://help.ubuntu.com/community/gedit">gedit</a> which can be found by searching for <strong>edit</strong> in the <strong>Dash Home</strong>. You can also run <strong>gedit</strong> directly from the command line, or use <strong>sudo gedit</strong> if you need to edit protected system files (see section 2 above).</p>
+
+<p>If you work on Bio-Linux by logging in remotely via ssh then you may not wish to run a graphical editor. In this case a good option is <strong>nano</strong>, which runs within your terminal window. Nano displays a brief list of available commands for Save, Exit, Cut, Paste... along the bottom of the window. Eg. to exit nano enter "^X" (control-X).</p>
+
+<p>Word processors such as Word and OpenOffice Writer are not plain text editors and they can introduce hidden characters and markup in your text files even when you save as a text file (with a .txt extension). Editing a text file with a word processor should be completely avoided if you plan to use the file as input to bioinformatics programs.</p>
+
+<h3>Copying and pasting text</h3>
+
+<p>In most graphical applications the Edit menu will contain buttons to Copy and Paste highlighted text. This works on Linux just as it does on Windows.</p>
+
+<p>You can still copy and paste text easily in applications that do not have this feature. On Linux you can assume that any highlighted text is already copied onto the clipboard. This means you usually don't need to do something special to copy text before pasting: if it's highlighted, it's already copied. Pasting the highlighted text is done by moving the mouse cursor to where you want to paste to, and then pressing <strong>both left and right mouse buttons simultaneously</strong>. If your mouse has a middle mouse button, then pressing it will also paste the text.</p>
+
+<h4>Note:</h4>
+
+<p>The standard keybindings in Windows for cut (ctrl-C) and paste (ctrl-V) do not apply universally under Linux as these key combinations have other features in various applications. <strong>In particular, ctrl-C is the standard keystroke for killing a running process in a terminal window!</strong></p>
+
+</li>
+
+<p>&nbsp;</p>
+
+<li>
+
+<h3>Opening a TAB delimited file</h3>
+
+<p>The Linux alternatives to Excel - OpenOffice Calc or Gnumeric - can be used to open TAB delimited files. To open this, start the program<strong>&nbsp;</strong>and choose one of these options. When opening the file using OpenOffice Calc, be sure to select <strong>File Type</strong>&nbsp; as <strong>Text CSV</strong>. You can also open TAB delimited files using standard text editors such as gedit or nano.<a name="edit"></a></p>
+
+</li><li>
+
+<h3>Reading PDF files</h3>
+
+<p>Linux has many programs that can read and print PDF documents but we 
+
+would suggest using <strong>evince, </strong>aka <strong>Document Viewer.&nbsp;</strong>By default double-clicking on a PDF 
+
+file will open it in evince. Or you can open pdf files on the comand line by 
+
+typing:<br /><br /><code>evince <em>pdfName</em></code><br /><br />Or in fact you can open any file from the command line by typing:</p>
+
+<p>gnome-open <em>filename</em></p>
+
+<p>This will just run whatever application would normally run if you had double-clicked the file icon.</p>
+
+<p><br />Adobe Reader is
+
+ available for free on Linux and can be installed using the Ubuntu 
+
+Software Centre. If you seach for the term acroread, you can then click 
+
+on a button that will enable your system to download packages from the 
+
+"lucid-partner" source. You can then just click the Install button for 
+
+Adobe Reader.<br /><a name="pidgin"></a></p>
+
+</li><li>
+
+<h3>Social networking and Instant Messenger</h3>
+
+<p>There are a number of fully functional alternatives to MSN, Yahoo! or
+
+ AIM messenger programs on Linux. The messenging program provided on 
+
+your system is <strong><a class="external-link" href="http://live.gnome.org/Empathy">Empathy</a></strong>. It will allow you 
+
+to connect to your various messaging services (MSN, AIM, etc.) as well 
+
+as supporting voice and video&nbsp; Another messaging system allowing you 
+
+access to your messenger accounts is is <a class="external-link" href="http://www.pidgin.im/about/"><strong>Pidgin</strong></a>, which you can 
+
+install using the package management system.<br /><br /><strong><a class="external-link" href="http://www.gwibber.com/">Gwibber</a></strong> 
+
+comes as standard on Ubuntu 10.04 systems, and so also on Bio-Linux. 
+
+This allows you see updates. Gwibber can be launched from the 
+
+"Broadcast" item on the messaging menu.
+
+ <br /><br />Clicking on the Envelope in the top task 
+
+bar drops down a menu from which you can chat, deal with Mail or start 
+
+Gwibber (using the Broadcast option).</p>
+
+</li><li>
+
+<h3>Further information</h3>
+
+<p>After installation, you almost certainly want to install the <strong>ubuntu-restricted-extras</strong>
+
+package. This is a collection of useful addons (Flash Player, Microsoft
+
+fonts, video codecs, etc) that cannot be distributed with the Bio-Linux
+
+image for legal reasons but nevertheless are free to install and use.</p>
+
+<p>Additional information 
+
+that you might find interesting is <a class="external-link" href="http://xtremediary.blogspot.com/2010/04/to-do-after-installing-ubuntu-1004.html">Mitash Shah's lists of things he installs to round out his Ubuntu 10.04 installation</a>, including the names of Windows-equivalent programs</p>
+
+</li></ul>
+
+</li></ol>
+
+</ol>
+
+<a href="#BL%205.0%20User%20Guide">Back to top of page</a>
+            
+        </div>
+    
+
+        <div class="relatedItems">
+    
+        
+            
+        
+    
+</div>
